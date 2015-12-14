@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="Adaptive Strategies" description="Shows the user preferences"
+    author="Aarij" author_email="siddiqui@dbis.rwth-aachen.de"
+    width="400" height="475">
+
+    <Require feature="opensocial-0.8"></Require>
+    <Require feature="openapp"></Require>
+    <Require feature="dynamic-height"></Require>
+
+    <OAuth>
+      <Service name="openapp"
+        xmlns:openapp="http://www.role-project.eu/xml/openapp/opensocialext/"
+        openapp:service="http://purl.org/role/terms/spaceService"
+        openapp:permitReadAppend="http://purl.org/role/terms/data">
+        <Request method="" url=""></Request>
+        <Authorization url=""></Authorization>
+        <Access method="" url=""></Access>
+      </Service>
+    </OAuth>
+
+  </ModulePrefs>
+  <Content type="html">
+  <![CDATA[
+<!--
+Copyright (c) 2015 Advanced Community Information Systems (ACIS) Group, 
+Chair of Computer Science 5 (Databases & Information Systems), RWTH Aachen University, Germany
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the ACIS Group nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>UserPreference</title>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<!-- Bootstrap stylesheet import -->
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<!-- own style information -->
+	<link rel="stylesheet" href="http://eiche.informatik.rwth-aachen.de/siddiqui/widgets/Vaptor-Frontend-Strategies/css/style.css">
+	
+	<link rel="stylesheet" type="text/css" href="http://eiche.informatik.rwth-aachen.de/siddiqui/widgets/Vaptor-Frontend-Strategies/css/checkbox.css">
+	
+
+	
+	
+	<!-- import jQuery for AJAX calls -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- import Bootstrap for responsive UI -->
+	<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<!-- OpenApp import -->
+	<script type="text/javascript" src="http://open-app.googlecode.com/files/openapp.js"></script>
+	<!-- inter widget communication library import -->
+	<script type="text/javascript" src="http://eiche.informatik.rwth-aachen.de/siddiqui/widgets/Vaptor-Frontend-Strategies/js/lib/iwc.js"></script>
+	<!-- additional widget specific imports (put your own imports here as well) -->
+
+	<!-- import the client library -->
+	<script type="text/javascript" src="http://eiche.informatik.rwth-aachen.de/siddiqui/widgets/Vaptor-Frontend-Strategies/js/lib/las2peerWidgetLibrary.js"></script>
+	<!-- import application script -->
+	
+	<link rel="stylesheet" type="text/css" href="http://eiche.informatik.rwth-aachen.de/siddiqui/widgets/Vaptor-Frontend-Strategies/css/github.min.css">
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	
+	<link rel="stylesheet" type="text/css" href="http://eiche.informatik.rwth-aachen.de/siddiqui/widgets/Vaptor-Frontend-Strategies/css/custom.css">
+	
+	<script type="text/javascript" src="http://eiche.informatik.rwth-aachen.de/siddiqui/widgets/Vaptor-Frontend-Strategies/js/applicationScript.js"></script>
+	
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	
+	<style>
+		#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+		#sortable li { margin: 0 3px 3px 3px; padding-left: 1.5em;}
+		#sortable li span { position: absolute; margin-left: -1.3em; }
+	</style>
+	
+
+  
+</head>
+<body>
+
+  <!-- container for actual page content -->
+  <div id="notification"></div>
+  <div class="container" id="main-content" style="max-height: 450px; overflow-y: auto;">
+	
+	
+		<div class="row" style="padding: 5px;">
+			<div class="col-sm-8" id="checkboxes">
+				
+				
+				<input type="type" class="form-control" id="strategy" placeholder="Enter Strategy Name">
+				
+				<ul id="sortable" style="margin-top: 4%; text-align: left;">
+				
+					<li id="lan" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+					<div class="checkbox inline" style="margin-left: 15%;">
+						<input id="language" type="checkbox" name="language" value="true" checked>
+						<label for="language">Language</label>
+					</div></li>
+					
+					<li id="loc" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+					<div class="checkbox inline" style="margin-left: 15%;">
+						<input id="location" type="checkbox" name="location" value="true"> 
+						<label for="location">Location</label>
+					</div></li>
+					
+					<li id="dur" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+					<div class="checkbox inline" style="margin-left: 15%;">
+						<input id="duration" type="checkbox" name="duration" value="true" checked> 
+						<label for="duration">Duration</label>
+					</div></li>
+					
+					<li id="rel" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+					<div class="checkbox inline" style="margin-left: 15%;">
+						<input id="relevance" type="checkbox" name="relevance" value="true" checked> 
+						<label for="relevance">Relevance</label>
+					</div></li>
+					
+					<li id="wei" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+					<div class="checkbox inline" style="margin-left: 15%;">
+						<input id="weightOrder" type="checkbox" name="weightOrder" value="true" checked>
+						<label for="weightOrder">Segment Weight</label>
+					</div></li>
+				
+				</ul>
+				<label id= "savelbl"></label><br>
+				<button id="savebtn" type="button" class="btn btn-default btn-block">Save</button>
+				
+			</div>
+		</div>
+        
+		<div class="row" style="padding: 5px;">
+			<div class="col-sm-8">
+				<span>Available Strategies</span>
+				<form action="#">
+					<select class="form-control" id="availableStratgies">
+						
+					</select>
+				</form>
+			</div>
+		</div>
+		
+	
+	<!-- Container div ends-->
+	</div>
+
+</body>
+</html>
+
+  ]]>
+  </Content>
+
+</Module>

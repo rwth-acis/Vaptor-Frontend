@@ -1,0 +1,133 @@
+.style1{
+    
+	float: right;
+    line-height: 30px;
+    height: 30px;
+}
+
+.stylelbl{
+background: transparent url('http://www.findsourcecode.com/wp-content/uploads/2014/04/star_off.png') no-repeat center center;
+}
+
+/*.styleinp{
+	display:none;
+    padding-right: 4px;
+    position: absolute;
+    left: 340px;
+    margin-top: 10px;
+}*/
+
+/*rating {
+    width: 300px;
+    height: 34px;
+    background-color: #f6f3f3;
+}*/
+ 
+.rating label {
+    text-indent: -100px;
+    width: 26px !important;
+    height: 30px;
+    overflow: hidden;
+    cursor: pointer;
+}
+ 
+.label {
+    float: left;
+    padding-top: 3px;
+}
+         
+input[type="radio"] {
+display:none;
+    padding-right: 4px;
+    position: absolute;
+    left: 340px;
+    margin-top: 10px;
+}
+
+
+                 
+input[type="radio"], .rating label.stars {
+    
+	float: right;
+    line-height: 30px;
+    height: 30px;
+}
+ 
+div + input[type=radio] + label {
+    clear: right;
+    margin-right: 80px;
+    counter-reset: checkbox;
+}
+ 
+/*.rating input[type="radio"]:required + label:after {
+    content: '';
+    position: absolute;
+    left: 340px; 
+    min-height: 10px;
+    margin-top: -36px;
+    text-align: right;
+    background: #6cbf00;
+    padding: 10px 10px;
+    display: block;
+    width: 50px;
+}*/
+ 
+.rating label.stars {
+    background: transparent url('http://www.findsourcecode.com/wp-content/uploads/2014/04/star_off.png') no-repeat center center;
+}
+ 
+/*
+.rating label.stars:hover ~ label.stars, 
+.rating label.stars:hover, 
+.rating input[type=radio][name=stars]:checked ~ label.stars {
+	
+    background-image: url('http://www.findsourcecode.com/wp-content/uploads/2014/04/star.png');
+    counter-increment: checkbox;
+}
+
+.rating input[type=radio][name=stars]:required + label.stars:after {
+    content: counter(checkbox);
+}*/
+
+
+/*--------------------------------------
+--------------------------------------*/
+
+.star-rating s:hover {
+    color: red;
+}
+.star-rating-rtl s:hover {
+    color: red;
+}
+
+.star-rating s,
+.star-rating-rtl s {
+    color: black;
+    font-size: 50px;
+    cursor: default;
+    text-decoration: none;
+    line-height: 50px;
+}
+.star-rating {
+    padding: 2px;
+}
+.star-rating-rtl {
+    background: #555;
+    display: inline-block;
+    border: 2px solid #444;
+}
+.star-rating-rtl s {
+    color: yellow;
+}
+.star-rating s:hover:before, .star-rating s.rated:before {
+    content: "\2605";
+}
+.star-rating s:before {
+    content: "\2606";
+}
+.star-rating-rtl s:hover:after, .star-rating-rtl s.rated:after{
+    content: "\2605";
+}
+.star-rating-rtl s:after {
+    content: "\2606";
+}

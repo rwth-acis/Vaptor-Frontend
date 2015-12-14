@@ -1,0 +1,21 @@
+#main-content {
+margin-top:20px;
+width:100%;
+}
+body{background:#efefef}
+
+.list-group-item {
+	background-color: inherit;
+}
+
+.truncate {
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.annotationtitle{
+	font-weight: bold;
+	font-size:1em;
+}
